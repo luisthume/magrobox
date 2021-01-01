@@ -6,17 +6,28 @@
 <!doctype html>
 
 <html>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+    }
+    table {
+      border-collapse: collapse;
+      width: 85%;
+    }
+    tr:nth-child(odd){
+      background-color: #d9d9d9;
+    }
+
+  </style>
 <body>
     <form id="target" method="post"  enctype="multipart/form-data">
       <div name ="up" class="upload-btn-wrapper">
         <button id="upload" name="upload" class="btn">Execute MAGROBOX</button>
         <input type="file" id="file" value="go" name="file" accept=".csv"/>
-        <output id="out">
-          file contents will appear here
-        </output>
+        <br></br>
+        <output id="out"></output>        
       </div>
     </form>
-    ===> {{ csv_shape }}
 </body>
 <script>
   function readSingleFile(evt) {

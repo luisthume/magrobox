@@ -257,14 +257,14 @@ def upload_file():
 
         with open(csv_filename_output, encoding="utf8") as csvFile:
             reader = csv.DictReader(csvFile, delimiter=',')
-            table = '<table><tr>{}</tr>'.format(''.join(['<td><td>{}</td></td>'.format(header) for header in reader.fieldnames]))
+            table = '<html><style>table,th,td{}table{}tr:nth-child(odd){}p{}</style><table><tr style="background-color: #a6a6a6">{}</tr>'.format('{border: 1px solid black;}','{border-collapse: collapse; width: 85%;}', '{background-color: #d9d9d9;}', '{display: block; margin-top: 0.4em; margin-bottom: 0.4em; margin-left: 0; margin-right: 0;}',''.join(['<td >{}</td>'.format(header) for header in reader.fieldnames]))
             for row in reader:
                 table_row = '<tr>'
                 for fn in reader.fieldnames:
-                    table_row += '<td><td>{}</td></td>'.format(row[fn])
+                    table_row += '<td>{}</td>'.format(row[fn])
                 table_row += '</tr>'
                 table += table_row
-        table += '</table><br>{}</br><br>{}</br><br>{}</br><br>{}</br><br>{}</br><br>{}</br><br>{}</br><br>{}</br>'.format('Valor Total: %.3f'% (valor_total), 'Deságio Liq: %.3f'% (desagio_liq), 'Deságio: %.3f'% (desagio), '\nValor Realizado: %.3f'% (valor_realizado), 'Deságio Liq Realizado: %.3f'% (desagio_liq_realizado), 'Deságio Realizado: %.3f'% (desagio_realizado), 'Deságio Liq em Falta: %.3f'% (desagio_liq - desagio_liq_realizado), ('Deságio em Falta: %.3f'% (desagio - desagio_realizado)))
+        table += '</table><p>{}</p><p>{}</p><p>{}</p><p>{}</p><p>{}</p><p>{}</p><p>{}</p><p>{}</p></html>'.format('Valor Total: %.3f'% (valor_total), 'Deságio Liq: %.3f'% (desagio_liq), 'Deságio: %.3f'% (desagio), '\nValor Realizado: %.3f'% (valor_realizado), 'Deságio Liq Realizado: %.3f'% (desagio_liq_realizado), 'Deságio Realizado: %.3f'% (desagio_realizado), 'Deságio Liq em Falta: %.3f'% (desagio_liq - desagio_liq_realizado), ('Deságio em Falta: %.3f'% (desagio - desagio_realizado)))
 
         return table
         # return redirect('/')
